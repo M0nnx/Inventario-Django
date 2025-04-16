@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard de Productos</title>
+    <link rel="stylesheet" href="../../static/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>Admin Panel</h2>
+                <button id="sidebar-toggle" class="sidebar-toggle">
+                    <span></span>
+                </button>
+            </div>
+            <div class="sidebar-menu">
+                <ul>
+                    <li class="active"><a href="#"><span class="icon">📊</span> Dashboard</a></li>
+                    <li><a href="#"><span class="icon">📦</span> Productos</a></li>
+                    <li><a href="#"><span class="icon">🏷️</span> Categorías</a></li>
+                    <li><a href="#"><span class="icon">📈</span> Ventas</a></li>
+                    <li><a href="#"><span class="icon">👥</span> Clientes</a></li>
+                    <li><a href="#"><span class="icon">⚙️</span> Configuración</a></li>
+                </ul>
+            </div>
+            <div class="sidebar-footer">
+                <div class="user-info">
+                    <div class="avatar">👤</div>
+                    <div>
+                        <h4>Admin</h4>
+                        <p>Administrador</p>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header class="top-bar">
+                <div class="search-container">
+                    <input type="text" placeholder="Buscar..." class="search-input">
+                    <button class="search-btn">🔍</button>
+                </div>
+                <div class="top-bar-actions">
+                    <button class="notification-btn">
+                        🔔
+                        <span class="badge">3</span>
+                    </button>
+                    <button class="theme-toggle" id="theme-toggle">🌙</button>
+                </div>
+            </header>
+
+            <div class="content">
+                <div class="page-header">
+                    <h1>Dashboard de Productos</h1>
+                    <p>Gestiona tus productos y categorías</p>
+                </div>
+
+                <div class="stats-container">
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background-color: #4CAF50;">📦</div>
+                        <div class="stat-info">
+                            <h3>Total Productos</h3>
+                            <p class="stat-value">{{ productos|length }}</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background-color: #2196F3;">🏷️</div>
+                        <div class="stat-info">
+                            <h3>Categorías</h3>
+                            <p class="stat-value">{{ categorias|length }}</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background-color: #FF9800;">💰</div>
+                        <div class="stat-info">
+                            <h3>Valor Inventario</h3>
+                            <p class="stat-value" id="inventoryValue">$0</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background-color: #E91E63;">⚠️</div>
+                        <div class="stat-info">
+                            <h3>Stock Bajo</h3>
+                            <p class="stat-value" id="lowStock">0</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dashboard-grid">
+                    <!-- Categorías Section -->
+                    <section class="categories-section">
+                        <div class="card categories-card">
+                            <div class="card-header">
+                                <h2>Gestión de Categorías</h2>
+                                <button class="btn-action" id="toggleCategoriaForm">+ Nueva Categoría</button>
+                            </div>
+                            
+                            <div class="form-container categories-form-container" id="categoriaFormContainer" style="display: none;">
+                                <form method="POST" class="styled-form">
+                                    {% csrf_token %}
+                                    <div class="form-group">
+                                        {{ categoriaForm.as_p }}
+                                    </div>
+                                    <div class="form-actions">
+                                        <button type="submit" name="submit_categoria" class="btn-primary">Crear Categoría</button>
+                                        <button type="button" class="btn-secondary" id="cancelCategoriaForm">Cancelar</button>
+                                    </div>
+                                </form>
+                            </div>
+
+                            <div class="table-container">
+                                <table class="data-table categories-table">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Nombre</th>
+                                            <th>Productos</th>
+                                            <th>Acciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for categoria in categorias %}
+                                        <tr>
+                                            <td>#{{ forloop.counter }}</td>
+                                            <td>{{ categoria.nombre }}</td>
+                                            <td>{{ categoria.producto_set.count }}</td>
+
+                                        </tr>
+                                        {% empty %}
+                                        <tr>
+                                            <td colspan="4" class="empty-message">No hay categorías registradas</td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Productos Section -->
+                    <section class="products-section">
+                        <div class="card products-card">
+                            <div class="card-header">
+                                <h2>Gestión de Productos</h2>
+                                <button class="btn-action" id="toggleProductoForm">+ Nuevo Producto</button>
+                            </div>
+                            
+                            <div class="form-container products-form-container" id="productoFormContainer" style="display: none;">
+                                <form method="POST" class="styled-form">
+                                    {% csrf_token %}
+                                    <div class="form-grid">
+                                        {{ productoForm.as_p }}
+                                    </div>
+                                    <div class="form-actions">
+                                        <button type="submit" name="submit_producto" class="btn-primary">Crear Producto</button>
+                                        <button type="button" class="btn-secondary" id="cancelProductoForm">Cancelar</button>
+                                    </div>
+                                </form>
+                            </div>
+
+                            <div class="table-container">
+                                <table class="data-table products-table">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Nombre</th>
+                                            <th>Precio</th>
+                                            <th>Stock</th>
+                                            <th>Categoría</th>
+                                            <th>Acciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for producto in productos %}
+                                        <tr>
+                                            <td>#{{ producto.id }}</td>
+                                            <td>{{ producto.nombre }}</td>
+                                            <td>${{ producto.precio }}</td>
+                                            <td>
+                                                <span class="stock-badge {% if producto.stock < 10 %}low{% elif producto.stock > 50 %}high{% else %}medium{% endif %}">
+                                                    {{ producto.stock }}
+                                                </span>
+                                            </td>
+                                            <td>{{ producto.categoria.nombre }}</td>
+                                            <td class="actions">
+                                                <a href="{% url 'actualizarProducto' producto.pk %}" class="btn-icon edit">✏️</a>
+                                                <button type="submit" class="btn-icon delete">🗑️</button>
+                                            </td>
+                                        </tr>
+                                        {% empty %}
+                                        <tr>
+                                            <td colspan="7" class="empty-message">No hay productos registrados</td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                    
+                                </table>
+                            </div>
+                            
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="../../static/js/script.js"></script>
+</body>
+</html>
