@@ -6,11 +6,11 @@
     <title>Document</title>
 </head>
 <body>
-    <h2>Editar Producto: {{ producto.nombre }}</h2>
+    <h2>Editar Producto: {{ categoria.nombre }}</h2>
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.as_p }} 
-        <button type="submit">Actualizar Producto</button>
+        <button type="submit">Actualizar categoria</button>
     </form>   
     <a href="{% url 'dashboard' %}">Volver al listado</a>  
 </body>
