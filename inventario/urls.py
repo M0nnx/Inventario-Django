@@ -1,9 +1,13 @@
 from django.contrib import admin
 from django.urls import path , include
-import producto
+from django.conf.urls.static import static
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('producto/', include('producto.urls')),
+
+    path('', include('core.urls')),
+    path('productos/', include('producto.urls')),
+    path('usuario/', include('usuarios.urls')),
 
 ]

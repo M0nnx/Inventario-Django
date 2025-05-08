@@ -6,10 +6,12 @@
     <title>Document</title>
 </head>
 <body>
-    <form method="POST">
+    <h2>Editar Producto: {{ producto.nombre }}</h2>
+    <form method="post">
         {% csrf_token %}
-        {{ productoForm.as_p }} 
+        {{ form.as_p }} 
         <button type="submit">Actualizar Producto</button>
-    </form>
+    </form>   
+    <a href="{% url 'dashboard' %}">Volver al listado</a>  
 </body>
 </html>

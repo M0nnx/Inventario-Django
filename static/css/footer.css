@@ -1,0 +1,112 @@
+/* Footer */
+.footer {
+    background-color: #f3f3f3;
+    color: #333;
+    padding: 40px 0;
+    font-family: Arial, sans-serif;
+    text-align: center;
+  }
+  
+  .footer .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  
+  .footer .footer-section {
+    margin-bottom: 20px;
+    flex: 1;
+    min-width: 200px;
+  }
+  
+  .footer h3 {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #3a6e42; /* Verde natural */
+  }
+  
+  .footer ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .footer ul li {
+    margin: 10px 0;
+  }
+  
+  .footer ul li a {
+    text-decoration: none;
+    color: #333;
+    transition: color 0.3s ease;
+  }
+  
+  .footer ul li a:hover {
+    color: #3a6e42;
+  }
+  
+  .footer .social-icons a {
+    font-size: 1.5rem;
+    margin: 0 10px;
+    color: #333;
+    transition: color 0.3s ease;
+  }
+  
+  .footer .social-icons a:hover {
+    color: #ffcc00;
+  }
+  
+  .footer .newsletter form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .footer .newsletter input {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    width: 250px;
+    font-size: 1rem;
+  }
+  
+  .footer .newsletter button {
+    background-color: #3a6e42;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+  }
+  
+  .footer .newsletter button:hover {
+    background-color: #ffcc00; /* Amarillo vibrante */
+  }
+  
+  .footer .copyright {
+    margin-top: 30px;
+    font-size: 0.9rem;
+    color: #888;
+  }
+
+/* Media Queries for Mobile */
+@media (max-width: 768px) {
+ 
+    .footer .container {
+        flex-direction: column;
+        align-items: center;
+    }
+  
+    .footer .footer-section {
+        margin-bottom: 30px;
+        text-align: center;
+    }
+  }
+  

@@ -1,0 +1,28 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}Perfil{% endblock %}
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'usuarios/css/perfil.css' %}">
+{% endblock %}
+
+
+{% block content %}
+  <h2>Perfil de Usuario</h2>
+
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn">Guardar cambios</button>
+  </form>
+
+  <form action="{% url 'salir' %}" method="post" style="display:inline;">
+    {% csrf_token %}
+    <button type="submit">Cerrar sesión</button>
+  </form>
+
+  <form action="{% url 'cambiarContraseña' %}" method="post" style="display:inline;">
+    {% csrf_token %}
+    <button type="submit">Cambiar contraseña</button>
+  </form>
+{% endblock %}

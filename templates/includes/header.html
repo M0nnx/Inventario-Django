@@ -1,0 +1,52 @@
+<header class="header">
+    <div class="container">
+        <!-- Logo -->
+        <div class="logo">
+            <a href="{% url 'home' %}">MiTienda</a>
+        </div>
+  
+        <!-- Botón de menú móvil -->
+        <div class="menu-toggle">
+            <i class="fas fa-bars"></i>
+        </div>
+  
+        <!-- Navegación -->
+        <nav class="nav-menu">
+            <ul class="quick-links">
+                <li><a href="{% url 'home' %}">Inicio</a></li>
+                <li><a href="{% url 'verProducto' %}">Productos</a></li>
+                <li><a href="{% url 'perfil' %}">Mi Cuenta</a></li>
+                <li><a href="nosotros.html">Nosotros</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+            </ul>
+        </nav>
+  
+        <!-- Búsqueda y carrito -->
+        <div class="header-actions">        
+            <div class="search-form">
+                <form id="search-form">
+                    <input type="text" placeholder="Buscar productos...">
+                    <button type="submit">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </form>
+            </div>
+            <div class="cart">
+                <a href="carrito.html">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">0</span>
+                </a>
+            </div>
+            
+            {% if request.user.is_authenticated %}
+            <div class="usuario-info">
+                <a href="{% url 'perfil' %}">
+                    <i class="fas fa-user-circle"></i>
+                </a>
+            </div>
+            {% endif %}   
+
+        </div>
+    </div>
+  </header>
+  

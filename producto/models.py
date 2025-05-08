@@ -2,6 +2,7 @@ from django.db import models
 
 class Categoria(models.Model):
     nombre = models.CharField(max_length=255, unique=True)
+    imagen_url = models.URLField(blank=True,null=True)
 
     class Meta:
         db_table = 'categoria'
@@ -15,6 +16,7 @@ class Producto(models.Model):
     stock = models.IntegerField()
     descripcion = models.CharField(max_length=255)
     categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE)
+    imagen_url = models.URLField(blank=True,null=True)
 
     class Meta:
         db_table = 'producto'

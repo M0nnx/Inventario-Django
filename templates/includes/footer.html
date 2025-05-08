@@ -1,0 +1,66 @@
+!
+
+<footer class="footer">
+    <div class="container">
+            <!-- Información de contacto -->
+            <div class="footer-section">
+                <h3>Contacto</h3>
+                <ul class="contact-info">
+                    <li>
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Av. Principal 123, Ciudad, País</span>
+                    </li>
+                    <li>
+                        <i class="fas fa-phone"></i>
+                        <span>+569 5359 9531</span>
+                    </li>
+                    <li>
+                        <i class="fas fa-envelope"></i>
+                        <span>info@mitienda.com</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Enlaces rápidos -->
+            <div class="footer-section">
+                <h3>Enlaces</h3>
+                <ul class="quick-links">
+                    <li><a href="{% url 'home' %}">Inicio</a></li>
+                    <li><a href="{% url 'verProducto' %}">Productos</a></li>
+                    <li><a href="{% url 'perfil' %}">Mi Cuenta</a></li>
+                    <li><a href="nosotros.html">Nosotros</a></li>
+                    <li><a href="contacto.html">Contacto</a></li>
+                </ul>
+            </div>
+
+            <!-- Horarios -->
+            <div class="footer-section">
+                <h3>Horarios</h3>
+                <ul class="hours">
+                    <li>Lunes - Viernes: 9:00 - 20:00</li>
+                    <li>Sábado: 10:00 - 18:00</li>
+                    <li>Domingo: Cerrado</li>
+                </ul>
+            </div>
+
+            <!-- Redes sociales y suscripción -->
+            <div class="footer-section">
+                <h3>Síguenos</h3>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+
+                <div class="newsletter">
+                    <p>Recibe nuestras novedades y ofertas</p>
+                    <form id="newsletter-form">
+                        <input type="email" placeholder="Tu email" required>
+                        <button type="submit">Enviar</button>
+                    </form>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; <span id="current-year"></span> Nogal. Todos los derechos reservados.</p>
+            </div>
+    </div>
+</footer>

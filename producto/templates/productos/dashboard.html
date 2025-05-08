@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard de Productos</title>
-    <link rel="stylesheet" href="../../static/css/style.css">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'productos/css/dashboard.css' %}">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -19,7 +20,7 @@
             <div class="sidebar-menu">
                 <ul>
                     <li class="active"><a href="#"><span class="icon">📊</span> Dashboard</a></li>
-                    <li><a href="#"><span class="icon">📦</span> Productos</a></li>
+                    <li><a href="{% url 'verProducto' %}"><span class="icon">📦</span> Productos</a></li>
                     <li><a href="#"><span class="icon">🏷️</span> Categorías</a></li>
                     <li><a href="#"><span class="icon">📈</span> Ventas</a></li>
                     <li><a href="#"><span class="icon">👥</span> Clientes</a></li>
@@ -77,16 +78,23 @@
                         <div class="stat-icon" style="background-color: #FF9800;">💰</div>
                         <div class="stat-info">
                             <h3>Valor Inventario</h3>
-                            <p class="stat-value" id="inventoryValue">$0</p>
+                            <p class="stat-value">${{ total|floatformat }}</p>
                         </div>
-                    </div>
+                    </div>                    
                     <div class="stat-card">
                         <div class="stat-icon" style="background-color: #E91E63;">⚠️</div>
                         <div class="stat-info">
                             <h3>Stock Bajo</h3>
-                            <p class="stat-value" id="lowStock">0</p>
+                            {% if producto_stock_bajo %}
+                                <p class="stat-value-s">
+                                   <strong>{{ producto_stock_bajo.nombre }}</strong> tiene stock bajo
+                                    con {{ producto_stock_bajo.stock }} unidades
+                                </p>
+                            {% else %}
+                                <p class="stat-value-s">No hay productos con stock bajo</p>
+                            {% endif %}
                         </div>
-                    </div>
+                    </div>                                        
                 </div>
 
                 <div class="dashboard-grid">
@@ -102,7 +110,7 @@
                                 <form method="POST" class="styled-form">
                                     {% csrf_token %}
                                     <div class="form-group">
-                                        {{ categoriaForm.as_p }}
+                                        {{ form.as_p }}
                                     </div>
                                     <div class="form-actions">
                                         <button type="submit" name="submit_categoria" class="btn-primary">Crear Categoría</button>
@@ -110,7 +118,6 @@
                                     </div>
                                 </form>
                             </div>
-
                             <div class="table-container">
                                 <table class="data-table categories-table">
                                     <thead>
@@ -118,16 +125,14 @@
                                             <th>ID</th>
                                             <th>Nombre</th>
                                             <th>Productos</th>
-                                            <th>Acciones</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         {% for categoria in categorias %}
                                         <tr>
-                                            <td>#{{ forloop.counter }}</td>
+                                            <td>#{{ categoria.id }}</td>
                                             <td>{{ categoria.nombre }}</td>
                                             <td>{{ categoria.producto_set.count }}</td>
-
                                         </tr>
                                         {% empty %}
                                         <tr>
@@ -145,9 +150,8 @@
                         <div class="card products-card">
                             <div class="card-header">
                                 <h2>Gestión de Productos</h2>
-                                <button class="btn-action" id="toggleProductoForm">+ Nuevo Producto</button>
+                                <a href="{% url 'crearProducto' %}" class="btn-primary">+ Nuevo Producto</a>
                             </div>
-                            
                             <div class="form-container products-form-container" id="productoFormContainer" style="display: none;">
                                 <form method="POST" class="styled-form">
                                     {% csrf_token %}
@@ -155,7 +159,7 @@
                                         {{ productoForm.as_p }}
                                     </div>
                                     <div class="form-actions">
-                                        <button type="submit" name="submit_producto" class="btn-primary">Crear Producto</button>
+
                                         <button type="button" class="btn-secondary" id="cancelProductoForm">Cancelar</button>
                                     </div>
                                 </form>
@@ -178,7 +182,7 @@
                                         <tr>
                                             <td>#{{ producto.id }}</td>
                                             <td>{{ producto.nombre }}</td>
-                                            <td>${{ producto.precio }}</td>
+                                            <td>${{ producto.precio|floatformat}}</td>
                                             <td>
                                                 <span class="stock-badge {% if producto.stock < 10 %}low{% elif producto.stock > 50 %}high{% else %}medium{% endif %}">
                                                     {{ producto.stock }}
@@ -186,8 +190,8 @@
                                             </td>
                                             <td>{{ producto.categoria.nombre }}</td>
                                             <td class="actions">
-                                                <a href="{% url 'actualizarProducto' producto.pk %}" class="btn-icon edit">✏️</a>
-                                                <button type="submit" class="btn-icon delete">🗑️</button>
+                                                <a href="{% url 'editarProducto' producto.pk %}" class="btn-icon edit">✏️</a>
+                                                <a href="{% url 'borrarProducto' producto.pk %}" class="btn-icon delete">🗑️</a>                                                                                  
                                             </td>
                                         </tr>
                                         {% empty %}
@@ -206,7 +210,6 @@
             </div>
         </main>
     </div>
-
-    <script src="../../static/js/script.js"></script>
+    <script src="{% static 'productos/js/script.js' %}"></script>
 </body>
 </html>

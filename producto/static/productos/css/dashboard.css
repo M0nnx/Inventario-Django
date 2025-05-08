@@ -7,7 +7,7 @@
 }
 
 :root {
-  --primary-color: #3498db;
+  --primary-color: #3a6e42;
   --secondary-color: #2c3e50;
   --accent-color: #e74c3c;
   --text-color: #333;
@@ -360,7 +360,12 @@ body.dark-mode {
 }
 
 .stat-value {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--text-color);
+}
+.stat-value-s {
+  font-size: 1rem;
   font-weight: 600;
   color: var(--text-color);
 }
@@ -368,15 +373,18 @@ body.dark-mode {
 /* Dashboard Grid */
 .dashboard-grid {
   display: grid;
-  grid-template-columns: minmax(250px, 30%) 1fr; /* 30% para categorías, resto para productos */
-  gap: 1.25rem;
+  grid-template-columns: minmax(200px, 25%) 1fr; /* Ajustamos el 30% a 25% para la columna de categorías */
+  gap: 1rem; /* Reducimos el espacio entre las columnas */
 }
+
 
 /* Ajuste para la sección de categorías */
 .categories-section {
-  flex: 0 0 30%; /* Reducido de 50% o valor anterior */
-  max-width: 350px; /* Establecemos un ancho máximo */
+  flex: 0 0 25%; /* Reducido el ancho de la sección de categorías */
+  max-width: 300px; /* Establecemos un ancho máximo más pequeño */
+  padding: 0.5rem; /* Reducimos el padding para que los elementos no estén tan separados */
 }
+
 
 /* Ajuste para la sección de productos */
 .products-section {
@@ -401,11 +409,7 @@ body.dark-mode {
 
 /* Ajustes adicionales para las tarjetas */
 .card.categories-card {
-  height: auto; /* Altura automática basada en contenido */
-}
-
-.card.products-card {
-  height: 100%; /* Ocupa toda la altura disponible */
+  height: fit-content; /* Altura automática basada en contenido */
 }
 
 .card-header {
@@ -493,11 +497,13 @@ body.dark-mode {
   cursor: pointer;
   transition: all 0.3s;
   border: none;
+  text-decoration: none;
 }
 
 .btn-primary {
   background-color: var(--primary-color);
   color: white;
+  text-decoration: none;
 }
 
 .btn-primary:hover {
@@ -558,13 +564,13 @@ body.dark-mode {
 /* Tables */
 .table-container {
   overflow-x: auto;
-  padding: 0 1.25rem 1.25rem;
+
 }
 
 .data-table {
   width: 100%;
   border-collapse: collapse;
-  min-width: 600px;
+  min-width: auto;
 }
 
 .data-table th,
@@ -604,23 +610,20 @@ body.dark-mode {
   display: inline-block;
   padding: 0.25rem 0.5rem;
   border-radius: 1rem;
-  font-size: 0.75rem;
-  font-weight: 500;
+  font-size: 1rem;
+  font-weight: 300;
 }
 
 .stock-badge.low {
-  background-color: #feeaea;
-  color: #e74c3c;
+  color: #e50909;
 }
 
 .stock-badge.medium {
-  background-color: #fff8e6;
-  color: #f39c12;
+  color: #ffe600;
 }
 
 .stock-badge.high {
-  background-color: #e6f7ee;
-  color: #27ae60;
+  color: #1ddd6d;
 }
 
 .empty-message {
@@ -632,6 +635,7 @@ body.dark-mode {
 
 /* Ajustes para las tablas */
 .categories-table {
+  table-layout: auto;
   font-size: 0.9rem; /* Texto ligeramente más pequeño */
 }
 
@@ -758,4 +762,23 @@ body.dark-mode {
 
 .fade-in {
   animation: fadeIn 0.3s ease-in-out;
+}
+
+.btn-link {
+  display: inline-block;
+  padding: 10px 20px; /* Espaciado alrededor del texto */
+  background-color: #3B82F6; /* Color de fondo (azul) */
+  color: white; /* Color del texto */
+  border-radius: 8px; /* Bordes redondeados */
+  text-decoration: none; /* Elimina el subrayado del enlace */
+  transition: background-color 0.3s ease; /* Efecto suave al cambiar el color de fondo */
+}
+
+.btn-link:hover {
+  background-color: #2563EB; /* Color de fondo al pasar el mouse */
+}
+
+.btn-link:focus {
+  outline: none; /* Elimina el borde de enfoque */
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5); /* Agrega un efecto de foco sutil */
 }

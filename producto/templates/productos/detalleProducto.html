@@ -1,0 +1,38 @@
+{% extends 'core/base.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle</title>
+    {% block extra_css %}
+    <link rel="stylesheet" href="{% static 'productos/css/detalle.css' %}">
+</head>
+<body>
+    {% load static %}
+    {% endblock %}
+    {% block content %}
+<main class="producto-detalle">
+    <div class="container">
+        <h2>{{ producto.nombre }}</h2>    
+        <div class="producto-imagen">
+            <img src="{{ producto.imagen_url }}" alt="{{ producto.nombre }}">
+        </div>
+        <div >
+            <p class="descripcion">{{ producto.descripcion }}</p>
+            <p class="categoria">Categoría: {{ producto.categoria }}</p>
+            <p class="precio">${{ producto.precio }}</p>
+            <p class="stock">Stock disponible: {{ producto.stock }}</p>
+            
+            <div class="botones">
+                <button class="btn">Añadir al carrito</button>
+                <button class="btn">Comprar ahora</button>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}
+</body>
+</html>
+
