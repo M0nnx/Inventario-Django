@@ -15,8 +15,8 @@ class Producto(models.Model):
     nombre = models.CharField(max_length=255)
     precio = models.DecimalField(max_digits=10, decimal_places=1)
     stock = models.IntegerField()
-    descripcion = models.TextField()
-    categoria_id = models.ForeignKey(Categoria, on_delete=models.CASCADE)
+    descripcion = models.TextField(blank=True)
+    categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE)
     imagen_url = models.URLField(blank=True,null=True)
     public_id = models.CharField(max_length=255, blank=True, null=True)
 
@@ -27,7 +27,7 @@ class Producto(models.Model):
 
 class Valoracion(models.Model):
     producto_id = models.ForeignKey(Producto, on_delete=models.CASCADE)
-    usuario_id = models.ForeignKey(Usuario, on_delete=models.CASCADE)
+    usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
     puntuacion = models.IntegerField()
     comentario = models.TextField(blank=True, null=True)
     fecha = models.DateTimeField(auto_now_add=True)

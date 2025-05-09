@@ -14,7 +14,7 @@ class CrearProductos(LoginRequiredMixin, UserPassesTestMixin,CreateView):
     model = Producto
     template_name = 'productos/crearProducto.html'
     form_class = ProductoForm
-    success_url = reverse_lazy('dashboard')
+    success_url = reverse_lazy('crearProducto')
     def test_func(self):
         return self.request.user.groups.filter(name='Administrador').exists()
     def handle_no_permission(self):
@@ -94,7 +94,7 @@ class CrearCategorias(LoginRequiredMixin, UserPassesTestMixin,CreateView):
     model = Categoria
     template_name = 'categorias/crearCategoria.html'
     form_class = CategoriaForm
-    success_url = reverse_lazy('dashboard')
+    success_url = reverse_lazy('crearCategoria')
     def test_func(self):
         return self.request.user.groups.filter(name='Administrador').exists()
     def handle_no_permission(self):

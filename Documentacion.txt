@@ -1,0 +1,77 @@
+Documentación de las API no son como tal porque no estoy usando rest_framework en este proyecto
+
+1. Endpoint: GET http://localhost:8000/api/productos/
+   Descripción: Obtiene una lista de todos los productos disponibles.
+   
+   Respuesta esperada:
+   [
+       {
+           "id": 1,
+           "nombre": "Producto 1",
+           "descripcion": "Descripción del producto",
+           "stock": "20",
+           "precio": 100,
+           "categoria": "chocolate"
+       },
+       {
+           "id": 2,
+           "nombre": "Producto 2",
+           "descripcion": "Descripción del producto",
+           "stock": "20",
+           "precio": 100,
+           "categoria": "chocolate"
+       }
+   ]
+
+2. Endpoint: POST http://localhost:8000/api/productos/crear/
+   Descripción: Crea un nuevo producto.
+   
+   Parámetros en el cuerpo de la solicitud (JSON):
+   {
+       "nombre": "Producto 3",
+       "descripcion": "Descripción del producto",
+       "stock": "20",
+       "precio": 100,
+       "categoria": "chocolate"
+   }
+   
+   Respuesta esperada (JSON):
+   {
+       "id": 3,
+       "nombre": "Producto 3",
+       "descripcion": "Descripción del nuevo producto",
+       "precio": 100,
+       "stock": "20",
+       "categoria": "chocolate"
+   }
+
+3. Endpoint: PUT http://localhost:8000/api/productos/editar/{id}/
+   Descripción: Actualiza la información de un producto existente.
+   
+   Parámetros en el cuerpo de la solicitud (JSON):
+   {
+       "nombre": "Producto Actualizado",
+       "descripcion": "Descripción actualizada del producto",
+       "precio": 180,
+       "stock": "15",
+       "categoria": "chocolate"
+   }
+   
+   Respuesta esperada (JSON):
+   {
+       "id": 1,
+       "nombre": "Producto Actualizado",
+       "descripcion": "Descripción actualizada del producto",
+       "precio": 180,
+       "stock": "15",
+       "categoria": "chocolate"
+   }
+
+4. Endpoint: DELETE http://localhost:8000/api/productos/borrar/{id}/
+   Descripción: Elimina un producto de la base de datos.
+   
+   Respuesta esperada (JSON):
+   {
+       "message": "Producto eliminado correctamente."
+   }
+
