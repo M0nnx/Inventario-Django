@@ -1,3 +1,7 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block extra_css %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,16 +11,15 @@
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    {% endblock %}
+
+    {% block content %}
 </head>
 <body>
-    <header>
-
-    </header>
     <section class="products-section">
         <div class="card products-card">
             <div class="card-header">
                 <h2>Productos</h2>
-                <a href="{% url 'crearProducto' %}" class="btn-primary">+ Nuevo Producto</a>
             </div>
             <div class="form-container products-form-container" id="productoFormContainer" style="display: none;">
                 <form method="POST" class="styled-form">
@@ -32,18 +35,6 @@
             </div>
 
             <div class="table-container">
-                <table class="data-table products-table">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Nombre</th>
-                            <th>Descripcion</th>
-                            <th>Precio</th>
-                            <th>Stock</th>
-                            <th>Categoría</th>
-                            <th>Acciones</th>
-                        </tr>
-                    </thead>
                     <tbody>
                         {% for producto in productos %}
                         <tr>
@@ -57,10 +48,6 @@
                                 </span>
                             </td>
                             <td>{{ producto.categoria.nombre }}</td>
-                            <td class="actions">
-                                <a href="{% url 'editarProducto' producto.pk %}" class="btn-icon edit">✏️</a>
-                                <a href="{% url 'borrarProducto' producto.pk %}" class="btn-icon delete">🗑️</a>                                                                                  
-                            </td>
                         </tr>
                         {% empty %}
                         <tr>
@@ -68,11 +55,10 @@
                         </tr>
                         {% endfor %}
                     </tbody>
-                    
-                </table>
             </div>
             
         </div>
     </section>
+    {% endblock %}
 </body>
 </html>

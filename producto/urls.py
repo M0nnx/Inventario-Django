@@ -18,6 +18,6 @@ urlpatterns = [
     path('editar/<int:pk>/', EditarProductos.as_view(), name='editarProducto'),
     path('borrar/<int:pk>/', BorrarProductos.as_view(), name='borrarProducto'),
     path('detalle/<int:pk>', VerProductoPorId.as_view(), name='verProductoId'),
-    path('ver/', VerProductos.as_view(), name='verProducto'),
+    path('', VerProductos.as_view(), name='verProducto'),
 
 ]

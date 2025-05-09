@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Mi Tienda{% endblock %}</title>
     {% load static %}
+    <link rel="stylesheet" href="{% static 'css/global.css' %}">
     <link rel="stylesheet" href="{% static 'css/header.css' %}">
     <link rel="stylesheet" href="{% static 'css/footer.css' %}">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -12,11 +13,13 @@
     {% block extra_css %}{% endblock %}
 </head>
 <body>
-    {% include 'includes/header.html' %}
-    <div class="content">
-        {% block content %}{% endblock %}
+    <div class="layout">
+        {% include 'includes/header.html' %}
+        <main class="content">
+            {% block content %}{% endblock %}
+        </main>
+        {% include 'includes/footer.html' %}
     </div>
-    {% include 'includes/footer.html' %}
     {% block extra_js %}{% endblock %}
 </body>
 </html>
