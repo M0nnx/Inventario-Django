@@ -196,3 +196,37 @@ td {
 .stock-badge.high {
     background-color: #4caf50;
 }
+
+/* Productos */
+.producto {
+    background-color: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    transition: transform 0.2s ease-in-out;
+    display: flex;
+    flex-direction: column;
+}
+
+.producto:hover {
+    transform: translateY(-5px);
+}
+
+.producto-img {
+    height: 200px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.producto-img img {
+    width: auto; /* Permite que la imagen ajuste su ancho de acuerdo a su proporción */
+    height: 100%; /* Mantiene la altura del contenedor */
+    object-fit: cover; /* La imagen se ajusta para cubrir el área del contenedor */
+    transition: transform 0.3s ease;
+}
+
+.producto:hover .producto-img img {
+    transform: scale(1.05); /* Aumenta ligeramente el tamaño de la imagen cuando se pasa el cursor */
+}

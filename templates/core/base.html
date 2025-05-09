@@ -20,6 +20,8 @@
         </main>
         {% include 'includes/footer.html' %}
     </div>
-    {% block extra_js %}{% endblock %}
+    {% block extra_js %}
+<script src="{% static 'js/script.js' %}"></script>
+    {% endblock %}
 </body>
 </html>

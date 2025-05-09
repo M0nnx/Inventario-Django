@@ -9,11 +9,13 @@ class Usuario(AbstractUser):
         return self.username
     
 class Direccion(models.Model):
-    usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE, related_name='direcciones')
+    usuario_id = models.ForeignKey(Usuario, on_delete=models.CASCADE, related_name='direcciones')
     direccion = models.CharField(max_length=255, blank=True, null=True)
+    telefono = models.BigIntegerField(null=True, blank=True)
     ciudad = models.CharField(max_length=255, blank=True, null=True)
     pais = models.CharField(max_length=255, blank=True, null=True)
     codigo_postal = models.CharField(max_length=255,blank=True, null=True)
+    es_default = models.BooleanField(default=False)
     class Meta:
         db_table = 'direccion'
     def __str__(self):

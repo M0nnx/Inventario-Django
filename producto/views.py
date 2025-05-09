@@ -68,7 +68,6 @@ class EditarProductos(LoginRequiredMixin, UserPassesTestMixin,UpdateView):
         producto.save()
         return super().form_valid(form)
 
-
 class BorrarProductos(LoginRequiredMixin, UserPassesTestMixin,DeleteView):
     model = Producto
     template_name = 'productos/borrarProducto.html'
@@ -152,7 +151,6 @@ class EditarCategoria(LoginRequiredMixin, UserPassesTestMixin,UpdateView):
         categoria.save()
         return super().form_valid(form)
 
-
 class BorrarCategoria(LoginRequiredMixin, UserPassesTestMixin,DeleteView):
     model = Categoria
     template_name = 'categorias/borrarCategoria.html'
@@ -200,3 +198,7 @@ class Dashboard(LoginRequiredMixin, UserPassesTestMixin, ListView):
         context['total'] = total
         context['producto_stock_bajo'] = producto_stock_bajo
         return context
+
+
+
+#Logica de negocio
