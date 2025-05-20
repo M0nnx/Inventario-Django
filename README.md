@@ -48,3 +48,21 @@ Está enfocado en la **gestión de productos** a través de un dashboard persona
 ```bash
 git clone https://github.com/M0nnx/Inventario-Django.git
 cd inventario-django
+```
+
+### 2. Crear y activar entorno virtual e instalar dependencias
+
+```bash
+python -m venv venv
+venv\Scripts\activate  # En Windows
+pip install -r requirements.txt
+```
+
+### 3. Aplicar migraciones, crear superusuario y ejecutar el servidor
+
+```bash
+python manage.py makemigrations
+python manage.py migrate
+python manage.py createsuperuser
+python manage.py runserver
+```
