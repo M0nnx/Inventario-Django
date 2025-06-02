@@ -1,7 +1,37 @@
 from django import forms
-from .models import Usuario
+from .models import Usuario, Direccion
+from pedidos.models import MetodoPago
 from django.contrib.auth.forms import UserCreationForm,AuthenticationForm, PasswordChangeForm
 from django.contrib.auth.models import User
+
+class DireccionForm(forms.ModelForm):
+    class Meta:
+        model = Direccion
+        fields = ['direccion','telefono','ciudad','pais','codigo_postal','es_default']
+
+class MetodoPagoForm(forms.ModelForm):
+    class Meta:
+        model = MetodoPago
+        fields = ['nombre','descripcion']
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 class RegistroForm(UserCreationForm):
     email = forms.EmailField()

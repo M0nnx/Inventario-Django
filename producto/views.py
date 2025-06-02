@@ -175,7 +175,7 @@ class ProductoCategoria(ListView):
         context['categoria'] = categoria
         return context
 
-#Opciones-Administracion
+#Administracion
 class Dashboard(LoginRequiredMixin, UserPassesTestMixin, ListView):
     model = Producto
     template_name = 'productos/dashboard.html'
@@ -198,7 +198,3 @@ class Dashboard(LoginRequiredMixin, UserPassesTestMixin, ListView):
         context['total'] = total
         context['producto_stock_bajo'] = producto_stock_bajo
         return context
-
-
-
-#Logica de negocio

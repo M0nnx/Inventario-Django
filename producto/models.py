@@ -26,11 +26,11 @@ class Producto(models.Model):
         return self.nombre
 
 class Valoracion(models.Model):
-    producto_id = models.ForeignKey(Producto, on_delete=models.CASCADE)
+    producto = models.ForeignKey(Producto, on_delete=models.CASCADE)
     usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
     puntuacion = models.IntegerField()
     comentario = models.TextField(blank=True, null=True)
     fecha = models.DateTimeField(auto_now_add=True)
     class Meta:
         db_table = 'valoraciones'
-        unique_together = ('producto_id', 'usuario_id')
+        unique_together = ('producto', 'usuario')

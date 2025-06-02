@@ -6,6 +6,6 @@ class HomeView(TemplateView):
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['productos'] = Producto.objects.all()
+        context['productos'] = Producto.objects.all()[:8]
         context['categorias'] = Categoria.objects.all()
         return context
